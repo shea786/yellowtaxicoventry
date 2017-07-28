@@ -1,0 +1,542 @@
+﻿<%@ master language="C#" autoeventwireup="true" inherits="AdminMasterPage, App_Web_adminmasterpage.master.cdcab7d2" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Zazantra.com</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="css/Calender.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap-cerulean.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
+    <link href="css/charisma-app.css" rel="stylesheet" type="text/css" />
+    <link href="css/jquery-ui-1.8.21.custom.css" rel="stylesheet" type="text/css">
+    <link href='css/chosen.css' rel='stylesheet'>
+    <link href='css/uniform.default.css' rel='stylesheet' type="text/css">
+    <link href='css/colorbox.css' rel='stylesheet' type="text/css">
+    <link href='css/jquery.cleditor.css' rel='stylesheet' type="text/css">
+    <link href='css/jquery.noty.css' rel='stylesheet' type="text/css">
+    <link href='css/noty_theme_default.css' rel='stylesheet' type="text/css">
+    <link href='css/elfinder.min.css' rel='stylesheet' type="text/css">
+    <link href='css/elfinder.theme.css' rel='stylesheet' type="text/css">
+    <link href='css/jquery.iphone.toggle.css' rel='stylesheet' type="text/css">
+    <link href='css/opa-icons.css' rel='stylesheet' type="text/css">
+    <link href='css/uploadify.css' rel='stylesheet' type="text/css">
+     <link rel="shortcut icon" href="images/icon_zazantra.png">
+    <style type="text/css">
+        body
+        {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav
+        {
+            padding: 9px 0;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function Confirm() {
+            var confirm_value = document.createElement("INPUT");
+            confirm_value.type = "hidden";
+            confirm_value.name = "confirm_value";
+            if (confirm("Have you completed today work and ready the submit the daily progress report.")) {
+                confirm_value.value = "Yes";
+            } else {
+                confirm_value.value = "No";
+            }
+            document.forms[0].appendChild(confirm_value);
+        }
+    </script>
+
+    <style type="text/css">
+        .modalBackground
+        {
+            background-color: Gray;
+            filter: alpha(opacity=80);
+            opacity: 0.8;
+            z-index: 10000;
+        }
+    </style>
+    
+   
+</head>
+<body oncontextmenu="return false;">
+    <form id="form1" runat="server">
+    <ajax:ToolkitScriptManager ID="toolkit" runat="server">
+    </ajax:ToolkitScriptManager>
+    <div class="navbar">
+        <div class="navbar-inner" style=" margin-bottom:15px;">
+            <div class="container-fluid">
+                <a class="logo" id="linkhome2" runat="server">
+                    <img alt="zazantra Logo" src="images/logo_zazantra.png" /></a> <a class="btn btn-navbar" data-toggle="collapse"
+                        data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse"><span class="icon-bar">
+                        </span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand"
+                            id="linkhome1" runat="server"><span></span>
+                            <br />
+                            <%--<span style="font-size: 18px; padding-top: 8px">JAIPUR INDIA</span>--%></a>
+                <div class="topnav">
+                    <ul>
+                        <li>
+                            <asp:LinkButton CssClass="colmge" ID="btnLogOut" runat="server" OnClick="btnLogOut_Click">(Logout)</asp:LinkButton><%--OnClientClick = "Confirm()"--%>
+                            <asp:LinkButton CssClass="colmge" ID="btnLogOutAdmin" runat="server" OnClick="btnLogOutAdmin_Click">(Logout)</asp:LinkButton></li>
+                        <li><a class="colmge" href="frmChangePassword.aspx">(Change Password)</a></li>
+                        <li><a href="#">
+                            <asp:Label ID="lblUserName" runat="server" Text=""></asp:Label></a></li>
+                        <p>
+                            Welcome</p>
+                    </ul>
+                </div>
+                <div class="abtpnav">
+                    <ul>
+                        <li>
+                            <asp:LinkButton ID="Help" CausesValidation="false" ToolTip="Click Help for help"
+                                OnClick="Help_Click" runat="server"> How To Use Zazantra</asp:LinkButton></li>
+                        <li>
+                            <asp:LinkButton ID="Support" CausesValidation="false" ToolTip="Support Links" OnClick="Support_Click"
+                                runat="server">Support</asp:LinkButton></li>
+                        <li><a href="cantactuspage.aspx">Contact us</a></li>
+                       <%-- <li><a href="#">About us</a></li>--%>
+                    </ul>
+                </div>
+                <nav>
+            <ul>
+                <li id="tabHome" runat="server"><a id="linkhome"   runat="server" >Home</a></li>
+               
+                <li id="tabContact" runat="server" ><a  href="frmAddContact.aspx" >Contacts</a>
+                  <ul>
+                  <li><a href="frmPhoneBookGroup.aspx" >Create Group</a></li>
+                <li><a href="frmAddContact.aspx">Create Contact</a></li>
+               <li><a href="frmviewAllContact.aspx">View All Contact</a></li>
+                <li><a href="frmPhoneBookTransaction.aspx">Transfer Contact</a></li>
+             
+                </ul>
+                </li>
+                <li id="tabMessage" runat="server"><a  href="frmCreateMessage.aspx" >Message</a>
+                <ul>
+                <li><a href="frmCreateMessage.aspx">Create Message</a></li>
+                <li><a href="frmInbox.aspx">Inbox</a></li>
+                 <li><a href="frmSentItems.aspx">Sent Items</a></li>
+               
+               
+                </ul>
+                </li >
+                        <li id="tabAppoinment" runat="server"><a  href="frmAddAppoinments.aspx">Appointments</a>
+                <ul>
+                <li><a href="frmAddAppoinments.aspx">Create Appointment</a></li>
+                <li><a href="frmViewAllAppoinments.aspx">View All </a></li>
+               
+               
+                </ul>
+                </li>
+                <li id="tabCustomer" runat="server"><a href="frmAddNewCustomer.aspx">Customer</a>
+                 <ul>
+                 
+                <li><a href="frmAddNewCustomer.aspx">Create Customer</a></li>
+                <li><a href="frmViewAllCustomers.aspx">View All Customers</a></li>
+             
+               
+                </ul>
+                </li>
+                 <li id="Li4" runat="server"><a href="frmAddNewCustomer.aspx">New Data</a>
+                 <ul>
+                   <li><a href="NEWCustomer.aspx">Create New Data</a></li>
+                     <li><a href="NEWVIEWCUSTOMER.aspx">View All New Data</a></li>
+                 </ul>
+                 </li>
+                <li id="tabemp" runat="server"><a href="frmAddEmployee.aspx">Employee</a>
+                <ul>
+                <li><a href="frmAddEmployee.aspx">Create Employee</a></li>
+                <li><a href="frmViewAllEmployee.aspx">View All Employee</a></li>
+                
+                </ul>
+                </li>
+                <li id="tabFollowUp" runat="server"><a href="frmFollowUp.aspx">Follow Up</a>
+                <ul>
+                <li><a href="frmViewTodayFollowUp.aspx">Today Follow Up</a></li>
+               <li><a href="frmPendingFollowUp.aspx">Pending Follow Up</a></li>
+                <li><a href="frmFollowUp.aspx">All Follow Up</a></li>
+                 <li><a href="DateWiseFollowup.aspx">DateWise Follow Up</a></li>
+                  <li  id="tabempfollow" runat="server"><a href="EmploeewiseFollowup.aspx">EmployeeWise Follow Up</a></li>
+                </ul></li>
+                
+                <li id="tabin" runat="server"><a href="#">Invoice</a>
+                <ul>
+                <li id="tabinvoice" runat="server"><a href="frmCreateInvoice.aspx">Create Invoice Formate</a></li>
+                <li><a href="FrmCreateInvoicenew.aspx">Create Invoice</a></li>
+                  <li><a href="frmViewAllInvoicenew.aspx">View All Invoice</a></li>
+                    <li><a href="frmSearchInvoiceByNo.aspx">Search All Invoice</a></li>
+                      <li><a href="frmsearchDeuInvoice.aspx">Pending Invoice</a></li>
+                </ul>
+                </li>
+               
+                <li id="tabAccount" runat="server"><a href="#">Accounts</a>
+                <ul class="right">
+                  <li><a href="FrmCreateInvoicenew.aspx">Create Invoice</a></li>
+                <li><a href="frmSearchInvoiceDetails.aspx">All Invoice </a></li>
+                 <li><a href="frmSearchInvoiceByNo.aspx">Search Invoice By No </a></li>
+                 <li><a href="frmSearchDuePayments.aspx">Due payment List </a></li>
+               
+                </ul>
+                </li>
+                <li id="tabReport" runat="server"><a href="#">Reports</a>
+                 <ul >
+                 <li id="tabProgressReport" runat="server"><a href="frmShowEmployeeProgressReport.aspx">Progress Report</a></li>
+                  <li><a href="frmCallHistory.aspx">Call History</a></li>
+                  <li><a href="frmSearchDeals.aspx">Search Deals</a></li>
+                     <li><a href="frmSearchFollowUp.aspx">Search Follow Up</a></li>
+               
+                   <li><a href="frmSearchInvoiceDetails.aspx">Search Invoice </a></li>
+                     <li><a href="frmSearchDuePayments.aspx">Due payment List </a></li>
+             
+                  <li><a href="frmViewAllCustomers.aspx">Group Wise Customer </a></li>
+                <li><a href="frmSearchEmployee.aspx">Group Wise Employee</a></li>
+                <li><a href="frmSearchAppoinments.aspx">Appointments</a></li>
+                 <li><a href="frmViewAllCustomersDateWise.aspx">Date Wise Customers</a></li>
+                  
+               
+              
+                </ul></li>
+                <li id="tabtasks" runat="server"><a href="#">Tasks</a>
+                  <ul>
+                <li><a href="frmCreateTask.aspx">Create Task</a></li>
+                <li><a href="frmViewAllTask.aspx">View All Task</a></li>
+                
+                </ul></li>
+                 <li id="Li3" runat="server"><a href="#">Ledger</a>
+                  <ul>
+                <li><a href="LedgerEntry.aspx">Entry</a></li>
+                <li><a href="Accountdetials.aspx">Report</a></li>
+                <li><a href="CreateLedger.aspx">Create Ledger</a></li>
+                
+                </ul></li>
+
+                <li id="tabusers" runat="server"><a href="frmAddUsers.aspx">Users</a>
+                <ul>
+                <li><a href="frmAddUsers.aspx">Create Users</a></li>
+                <li><a href="frmViewAllUsers.aspx">View All Users</a></li>
+                
+                </ul>
+                </li>
+           
+                <li id="tabTools" runat="server"><a href="frmCategorySubCategory.aspx">Tools</a>
+                   <ul class="right">
+                <li><a href="frmCategorySubCategory.aspx">Create Purpose</a></li>
+                <li><a href="frmCityStateCountry.aspx">Create Location</a></li>
+                <li><a href="frmDesignation.aspx">Create Designation</a></li>
+               <li><a href="frmTransferCustomers.aspx">Transfer Customer</a></li>
+                 <li><a href="frmCreateParticular.aspx">Create Particular</a></li>
+                </ul>
+                
+                </li>
+                 <li id="Li1" runat="server"><a href="frmViewAllCustomers.aspx">Print Label</a>
+                  
+                
+                </li>
+                
+                 <li id="Li2" runat="server"><a href="frmViewAllCustomers.aspx">Projects</a>
+                  <ul class="right">
+                <li><a href="frmViewAllCustomers.aspx">Create Projects</a></li>
+                <li><a href="ViewAllProject.aspx">View Projects</a></li>
+             
+                </ul>
+                
+                </li>
+                <li id="Li5" runat="server"><a href="frmContactUs.aspx">Contact us</a></li>
+                <%--  <li id="tabSubmitReport" runat="server"><a href="frmSubmitProgressReport.aspx">Submit Report</a>
+                  
+                
+                </li>--%>
+            </ul>
+            </nav>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <!-- left menu starts -->
+            <div class="span2 main-menu-span">
+                <div class="well nav-collapse sidebar-nav">
+                    <ul class="nav nav-tabs nav-stacked main-menu">
+                        <asp:Panel CssClass="nav nav-tabs nav-stacked main-menu" ID="pnl1" runat="server">
+                            <li class="nav-header hidden-tablet">Quick Links</li>
+                            <li><a class="ajax-link" href="frmCreateTask.aspx"><i class="icon-align-justify"></i>
+                                <span class="hidden-tablet">Create Task</span></a></li>
+                            <li><a class="ajax-link" href="frmAddUsers.aspx"><i class="icon-align-justify"></i><span
+                                class="hidden-tablet">Create User</span></a></li>
+                            <li><a class="ajax-link" href="frmAddEmployee.aspx"><i class="icon-align-justify"></i>
+                                <span class="hidden-tablet">Create Employee</span></a></li>
+                            <li><a class="ajax-link" href="frmAddContact.aspx"><i class="icon-align-justify"></i>
+                                <span class="hidden-tablet">Create Contact</span></a></li>
+                        </asp:Panel>
+                        <li><a class="ajax-link" href="frmAddNewCustomer.aspx"><i class="icon-align-justify">
+                        </i><span class="hidden-tablet">Create Customer</span></a></li>
+                        <li><a class="ajax-link" href="frmCreateMessage.aspx"><i class="icon-align-justify">
+                        </i><span class="hidden-tablet">Create Message</span></a></li>
+                        <%--  <li><a class="ajax-link" href="#"><i class="icon-align-justify"></i>
+                                <span class="hidden-tablet">Create Booking</span></a></li>--%>
+                        <li><a class="ajax-link" href="frmAddAppoinments.aspx"><i class="icon-align-justify">
+                        </i><span class="hidden-tablet">Create Appointments</span></a></li>
+                        <li><a class="ajax-link" href="FrmCreateInvoicenew.aspx"><i class="icon-align-justify">
+                        </i><span class="hidden-tablet">Create Invoice</span></a></li>
+                    </ul>
+                    <%-- <label id="for-is-ajax" class="hidden-tablet" for="is-ajax">
+                        <input id="is-ajax" type="checkbox">
+                        Ajax on menu</label>--%>
+                </div>
+                <!--/.well -->
+                <br />
+                <a href="frmEmployeesCallHistoryGraph.aspx" title="Call History Graph">
+                    <div id="impGraph" runat="server" style="border: solid 1px skyblue; display:none;">
+                        <h5>
+                            Click Here For View Employee Call History Graph</h5>
+                        <img src="img/graph.jpg" alt="" style="width: 180px; height: 100px" />
+                    </div>
+                </a>
+            </div>
+            <!--/span-->
+            <!-- left menu ends -->
+            <div id="content" class="span10">
+                <!-- content starts -->
+                <%--  <div>
+                    <ul class="breadcrumb">
+                        <li><a href="#">Home</a> <span class="divider">/</span> </li>
+                        <li><a href="#">Forms</a> </li>
+                    </ul>
+                </div>--%>
+                <!-- content ends -->
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    <p>
+                        </p>
+                </asp:ContentPlaceHolder>
+            </div>
+            <!--/#content.span10-->
+            <%-- Pop Up Extender Content Goes Here--%>
+            <asp:Button ID="btnShowPopup" runat="server" Style="display: none" />
+            <ajax:ModalPopupExtender ID="mpLogOut" runat="server" TargetControlID="btnShowPopup"
+                PopupControlID="pnlLogOutPopUp" CancelControlID="btnClose2" BackgroundCssClass="modalBackground">
+            </ajax:ModalPopupExtender>
+            <asp:Panel ID="pnlLogOutPopUp" runat="server" BackColor="White" Style="display: none;
+                border: solid 2px skyblue; border-radius: 10px; width: 450px; height: 150px;">
+                <div class="box span12">
+                    <div class="box-header well" data-original-title>
+                        <h2>
+                            Zazantra.com</h2>
+                        <div class="box-icon">
+                            <%--<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>--%>
+                            <asp:LinkButton ID="btnClose2" CssClass="btn btn-close btn-round" OnClick="btnCloseReload_Click" runat="server"><i class="icon-remove"></i></asp:LinkButton>
+                        </div>
+                    </div>
+                    <br />
+                    Have you completed today work and ready the submit the daily progress report.
+                    <br />
+                    <br />
+                    <div style="margin-left: 130px">
+                        <asp:Button ID="btnLogOutYes" CssClass="btn-small" Width="80px" runat="server" Text="Yes"
+                            OnClick="btnLogOutYes_Click" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:Button ID="btnLogOutNo" CssClass="btn-small" Width="80px" runat="server" Text="No"
+                            OnClick="btnLogOutNo_Click" />
+                    </div>
+                </div>
+            </asp:Panel>
+            <ajax:ModalPopupExtender ID="ModalPopupSupport" runat="server" TargetControlID="btnShowPopup"
+                PopupControlID="pnlpopupSupport" CancelControlID="btnCancel" BackgroundCssClass="modalBackground">
+            </ajax:ModalPopupExtender>
+            <asp:Panel ID="pnlpopupSupport" runat="server" BackColor="White" Style="display: none;
+                border: solid 2px skyblue; border-radius: 10px; width: 500px; height: 200px;">
+                <div class="box span12">
+                    <div class="box-header well" data-original-title>
+                        <h2>
+                            Zazantra.com</h2>
+                        <div class="box-icon">
+                            <%--<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>--%>
+                            <asp:LinkButton ID="btnCancel" OnClick="btnCloseReload_Click" CssClass="btn btn-close btn-round" runat="server"><i class="icon-remove"></i></asp:LinkButton>
+                        </div>
+                    </div>
+                    <ul>
+                        <li><a href="http://entece.org/" target="_blank">http://entece.org/</a></li>
+                        <li><a href="http://www.stonepanorama.com/" target="_blank">http://www.stonepanorama.com/</a></li>
+                        <li><a href="http://worldstonefairs.com/" target="_blank">http://worldstonefairs.com/</a></li>
+                        <li><a href="http://www.greatindianvoyages.com/" target="_blank">http://www.greatindianvoyages.com/</a></li>
+                        <li><a href="http://vikjaystones.com/" target="_blank">http://vikjaystones.com/</a></li>
+                        <li><a href="http://stonetec.org/" target="_blank">http://stonetec.org/</a></li>
+                        <li><a href="http://stfindia.org/" target="_blank">http://stfindia.org/</a></li>
+                    </ul>
+                </div>
+            </asp:Panel>
+            <ajax:ModalPopupExtender ID="ModalPopupHelp" runat="server" TargetControlID="btnShowPopup"
+                PopupControlID="pnlpopupHelp" CancelControlID="btnCancel1" BackgroundCssClass="modalBackground">
+            </ajax:ModalPopupExtender>
+            <asp:Panel ID="pnlpopupHelp" runat="server" BackColor="White" Style="display: none;
+                border: solid 2px skyblue; border-radius: 10px; width: 500px; height: 280px;">
+                <div class="box span12">
+                    <div class="box-header well" data-original-title>
+                        <h2>
+                            For any kind of help please contact</h2>
+                        <div class="box-icon">
+                            <%--<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>--%>
+                            <asp:LinkButton ID="btnCancel1" CssClass="btn btn-close btn-round" OnClick="btnCloseReload_Click" runat="server"><i class="icon-remove"></i></asp:LinkButton>
+                        </div>
+                    </div>
+                    <center>
+                        <img alt="Charisma Logo" src="img/toplogo.png" />
+                    </center>
+                    <div class="span12 center login-header">
+                        <h2>
+                            Zazantra.com
+                        </h2>
+                        <br />
+                        <%--<p>
+                            <strong>Rastogi House, B9 Vivekanand Marg, C-Scheme Jaipur-Rajasthan,(INDIA)
+                                <br />
+                                Phone:0141-2376171 ; Website: <a href="http://www.stonetec.org">www.stonetec.org</a></strong></p>--%>
+                    </div>
+                    <!--/span-->
+                    <br />
+                    <br />
+                </div>
+            </asp:Panel>
+            <%--pop contecnt End Here--%>
+        </div>
+        <!--/fluid-row-->
+        <hr />
+        <footer>
+			<p><strong> All Rights Are Reserved, Copyright 2014, Zazantra Private Limited</strong> <br />  <%--Rastogi House, B9 Vivekanand Marg, C-Scheme Jaipur-Rajasthan,(INDIA) <br /> Phone:0141-2376171 ; Website: <a href="http://www.stonetec.org">www.stonetec.org</a>--%></p>
+			<%--<p class="pull-right">Powered by: <a href="http://www.prevoirinfotech.com/">Prevoir Infotech Pvt. Ltd.</a></p>--%>
+		</footer>
+    </div>
+    </form>
+
+    <script src="js/jquery-1.7.2.min.js"></script>
+
+    <!-- jQuery UI -->
+
+    <script src="js/jquery-ui-1.8.21.custom.min.js"></script>
+
+    <!-- transition / effect library -->
+
+    <script src="js/bootstrap-transition.js"></script>
+
+    <!-- alert enhancer library -->
+
+    <script src="js/bootstrap-alert.js"></script>
+
+    <!-- modal / dialog library -->
+
+    <script src="js/bootstrap-modal.js"></script>
+
+    <!-- custom dropdown library -->
+
+    <script src="js/bootstrap-dropdown.js"></script>
+
+    <!-- scrolspy library -->
+
+    <script src="js/bootstrap-scrollspy.js"></script>
+
+    <!-- library for creating tabs -->
+
+    <script src="js/bootstrap-tab.js"></script>
+
+    <!-- library for advanced tooltip -->
+
+    <script src="js/bootstrap-tooltip.js"></script>
+
+    <!-- popover effect library -->
+
+    <script src="js/bootstrap-popover.js"></script>
+
+    <!-- button enhancer library -->
+
+    <script src="js/bootstrap-button.js"></script>
+
+    <!-- accordion library (optional, not used in demo) -->
+
+    <script src="js/bootstrap-collapse.js"></script>
+
+    <!-- carousel slideshow library (optional, not used in demo) -->
+
+    <script src="js/bootstrap-carousel.js"></script>
+
+    <!-- autocomplete library -->
+
+    <script src="js/bootstrap-typeahead.js"></script>
+
+    <!-- tour library -->
+
+    <script src="js/bootstrap-tour.js"></script>
+
+    <!-- library for cookie management -->
+
+    <script src="js/jquery.cookie.js"></script>
+
+    <!-- calander plugin -->
+
+    <script src='js/fullcalendar.min.js'></script>
+
+    <!-- data table plugin -->
+
+    <script src='js/jquery.dataTables.min.js'></script>
+
+    <!-- chart libraries start -->
+
+    <script src="js/excanvas.js"></script>
+
+    <script src="js/jquery.flot.min.js"></script>
+
+    <script src="js/jquery.flot.pie.min.js"></script>
+
+    <script src="js/jquery.flot.stack.js"></script>
+
+    <script src="js/jquery.flot.resize.min.js"></script>
+
+    <!-- chart libraries end -->
+    <!-- select or dropdown enhancer -->
+
+    <script src="js/jquery.chosen.min.js"></script>
+
+    <!-- checkbox, radio, and file input styler -->
+
+    <script src="js/jquery.uniform.min.js"></script>
+
+    <!-- plugin for gallery image view -->
+
+    <script src="js/jquery.colorbox.min.js"></script>
+
+    <!-- rich text editor library -->
+
+    <script src="js/jquery.cleditor.min.js"></script>
+
+    <!-- notification plugin -->
+
+    <script src="js/jquery.noty.js"></script>
+
+    <!-- file manager library -->
+
+    <script src="js/jquery.elfinder.min.js"></script>
+
+    <!-- star rating plugin -->
+
+    <script src="js/jquery.raty.min.js"></script>
+
+    <!-- for iOS style toggle switch -->
+
+    <script src="js/jquery.iphone.toggle.js"></script>
+
+    <!-- autogrowing textarea plugin -->
+
+    <script src="js/jquery.autogrow-textarea.js"></script>
+
+    <!-- multiple file upload plugin -->
+
+    <script src="js/jquery.uploadify-3.1.min.js"></script>
+
+    <!-- history.js for cross-browser state change on ajax -->
+
+    <script src="js/jquery.history.js"></script>
+
+    <!-- application script for Charisma demo -->
+
+    <script src="js/charisma.js"></script>
+
+</body>
+</html>

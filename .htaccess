@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteCond %{blog.php} !-f
+RewriteCond %{blog}.php -f
+RewriteRule ^(.*)$ $1.php [NC,L]

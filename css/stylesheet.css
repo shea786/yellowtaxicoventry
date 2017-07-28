@@ -1,0 +1,81 @@
+
+@import url(http://fonts.googleapis.com/css?family=Bitter:400,700);
+body { margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:12px; }
+
+.topStrip { background:#e50102; height:5px; width:100%;}
+.top-header {margin:0 auto; width:1000px;}
+#header{min-height:747px; margin:0 auto; width:100%; position:relative; z-index:90090090}
+.headerBg { background:url(../images/header-bg.png) repeat-x top; min-height:194px; position:absolute; z-index:999;min-width:1349px; width:100%;}
+.logo { float:left; padding-top:0px;  position:relative;}
+
+
+
+
+
+.clr { clear:both;}
+.banner { height:500px; margin:0 auto; width:1000px;}
+.pading {padding:150px 0;}
+
+
+
+
+
+
+
+
+
+
+.insideHeaderBg { background:url(../images/abt-bg.jpg) no-repeat top center #ffcb08;width:100%;min-width:1349px;  min-height:194px;}
+
+.bdrBtm { border-bottom:#d5d4d2 1px solid;}
+.bdr { border:#d5d4d2 1px solid;}
+.table { width:100% !important;}
+.table tr td{ padding:7px  10px;}
+.table tr th{ padding:13px 10px;}
+
+
+ 
+.f18 { font-family: 'Bitter', serif;   font-size: 18px; color:#1f1f1f; padding:20px 0; text-align:center;  }
+.f14 { font-family: 'Bitter', serif;   font-size: 14px; color:#1f1f1f; line-height:22px; }
+.f24 { font-family: 'Bitter', serif;   font-size: 24px; color:#1f1f1f; padding:20px 0; text-align:center;  }
+.f20 { font-family: 'Bitter', serif;   font-size: 20px; color:#1f1f1f;}
+
+.contactBox {background:#f3f2f2; border:#CCCCCC solid 1px; padding:20px;}
+.callus {width:244px; float:right; padding:0;}
+
+#contact-area {
+	width: 600px;
+	margin-top: 25px;
+}
+
+#contact-area input, #contact-area textarea {
+	padding: 5px;
+	width: 471px;
+	font-family: Helvetica, sans-serif;
+	font-size: 1.4em;
+	margin: 0px 0px 10px 0px;
+	border: 1px solid #e6e6e6;
+}
+
+#contact-area textarea {
+	height: 90px;
+}
+
+#contact-area textarea:focus, #contact-area input:focus {
+	border: 2px solid #f49d1e;
+}
+
+#contact-area input.submit-button {
+	width: 100px;
+	float: right;
+}
+
+label {
+	float: left;
+	text-align: right;
+	margin-right: 15px;
+	width: 100px;
+	padding-top: 5px;
+	font-size: 1.4em;
+}
+

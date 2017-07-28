@@ -1,0 +1,4 @@
+textarea{ overflow-y:hidden}
+body{ overflow-x: hidden  ; position:relative; width:100%; }
+.container{ overflow:hidden}
+header #logo{  display:block; }
